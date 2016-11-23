@@ -3,6 +3,7 @@ import { View, TouchableHighlight, Text } from 'react-native';
 
 import styles from '../styles';
 import Price from './Price';
+import BottomLinks from './BottomLinks';
 
 export default class MarketData extends Component {
   render() {
@@ -16,7 +17,9 @@ export default class MarketData extends Component {
         <View style={styles.body}>
           <Price />
         </View>
-        <View style={styles.bottom} />
+        <View style={styles.bottom}>
+          <BottomLinks />
+        </View>
       </View>
     );
   }

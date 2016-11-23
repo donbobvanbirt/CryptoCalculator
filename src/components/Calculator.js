@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import autobind from 'autobind-decorator';
 
 import styles from '../styles';
+import BottomLinks from './BottomLinks';
 
 class MarketData extends Component {
   constructor() {
@@ -70,7 +71,9 @@ class MarketData extends Component {
             <TextInput style={styles.calcInput} value={valueTwo} keyboardType="numeric" onChangeText={val => this.enterVal2(val)} />
           </View>
         </View>
-        <View style={styles.bottom} />
+        <View style={styles.bottom}>
+          <BottomLinks />
+        </View>
       </View>
     );
   }
