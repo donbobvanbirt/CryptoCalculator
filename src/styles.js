@@ -13,15 +13,27 @@ export default StyleSheet.create({
   },
   body: {
     flex: 9,
-    backgroundColor: '#C6C6C6'
+    backgroundColor: '#C6C6C6',
   },
   bottom: {
     flex: 1,
-    backgroundColor: '#383838'
+    backgroundColor: '#383838',
   },
-  // instructions: {
-  //   textAlign: 'center',
-  //   color: '#333333',
-  //   marginBottom: 5,
-  // },
+  price: {
+    textAlign: 'center',
+    color: '#000000',
+    marginBottom: 8,
+    fontSize: 60,
+  },
+  priceDetails: {
+    textAlign: 'center',
+    color: '#000000',
+    marginBottom: 5,
+  },
+  detailContainer: {
+    flexDirection: 'row',
+    // alignItems: 'center',
+    justifyContent: 'space-around',
+    marginBottom: 5,
+  },
 });

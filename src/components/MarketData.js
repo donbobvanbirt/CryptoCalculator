@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  Image,
-  View
-} from 'react-native';
+import { View } from 'react-native';
 
 import styles from '../styles';
+import Price from './Price';
 
 export default class MarketData extends Component {
   render() {
@@ -15,7 +12,9 @@ export default class MarketData extends Component {
           Bitcoin!
         </Text> */}
         <View style={styles.top} />
-        <View style={styles.body} />
+        <View style={styles.body}>
+          <Price />
+        </View>
         <View style={styles.bottom} />
       </View>
     );
