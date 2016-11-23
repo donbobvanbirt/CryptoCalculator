@@ -1,37 +1,58 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
+import { connect } from 'react-redux';
 
 import styles from '../styles';
+import { fetchPrice } from '../actions/MarketActions';
 
-export default class Price extends Component {
+// @connect(null, dispatch => ({
+//   fetchPrice(pair) {
+//     dispatch(fetchPrice(pair));
+//   },
+// }))
+class Price extends Component {
+
+  componentWillMount() {
+    this.props.fetchPrice('BTCUSD');
+  }
+
+  selectExchange() {
+    console.log('click');
+  }
+
+  selectCurrency() {
+    console.log('click');
+  }
+
   render() {
-    const lastPrice = '741.21';
-    const volume = '7520.86';
+    // console.log('props.price:', this.props.price)
+    const { bid, ask, last_price, low, high, volume } = this.props.price;
+
     const currentExchange = 'Bitfinex';
     const currentCurrnecyPair = 'BTC / USD';
     return (
       <View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Button title={currentExchange} />
-          <Button title={currentCurrnecyPair} />
+          <Button onPress={this.selectExchange} title={currentExchange} />
+          <Button onPress={this.selectCurrency} title={currentCurrnecyPair} />
         </View>
         <Text style={styles.price}>
-          {lastPrice}
+          {last_price}
         </Text>
         <View style={styles.detailContainer}>
           <Text style={styles.priceDetails}>
-            Low: {lastPrice}
+            Low: {low}
           </Text>
           <Text style={styles.priceDetails}>
-            High: {lastPrice}
+            High: {high}
           </Text>
         </View>
         <View style={styles.detailContainer}>
           <Text style={styles.priceDetails}>
-            Bid: {lastPrice}
+            Bid: {bid}
           </Text>
           <Text style={styles.priceDetails}>
-            Ask: {lastPrice}
+            Ask: {ask}
           </Text>
         </View>
         <Text style={styles.priceDetails}>
@@ -41,3 +62,12 @@ export default class Price extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  fetchPrice(pair) {
+    dispatch(fetchPrice(pair));
+  },
+});
+const mapStateToProps = state => ({ price: state.price });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Price);

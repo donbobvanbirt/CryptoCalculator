@@ -46,5 +46,7 @@ export default StyleSheet.create({
   },
   viewSelect: {
     color: '#c2c6ce',
+    fontSize: 17,
+    margin: 8,
   },
 });
