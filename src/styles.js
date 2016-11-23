@@ -10,6 +10,14 @@ export default StyleSheet.create({
   top: {
     flex: 1,
     backgroundColor: '#383838',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+  },
+  calculatorTop: {
+    flex: 1,
+    backgroundColor: '#383838',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-end',
   },
   body: {
     flex: 9,
@@ -35,5 +43,8 @@ export default StyleSheet.create({
     // alignItems: 'center',
     justifyContent: 'space-around',
     marginBottom: 5,
+  },
+  viewSelect: {
+    color: '#c2c6ce',
   },
 });

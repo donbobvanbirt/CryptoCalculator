@@ -8,13 +8,13 @@ export default class MarketData extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.top}>
-          <TouchableHighlight onPress={this.props.onForward}>
-            <Text style={styles.viewSelect}>Calculator</Text>
+        <View style={styles.calculatorTop}>
+          <TouchableHighlight onPress={this.props.onBack}>
+            <Text style={styles.viewSelect}>Back</Text>
           </TouchableHighlight>
         </View>
         <View style={styles.body}>
-          <Price />
+          <Text>Calculator</Text>
         </View>
         <View style={styles.bottom} />
       </View>
