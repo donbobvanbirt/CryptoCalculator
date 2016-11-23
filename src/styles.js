@@ -33,6 +33,16 @@ export default StyleSheet.create({
     marginBottom: 8,
     fontSize: 60,
   },
+  calcInput: {
+    textAlign: 'center',
+    color: '#000000',
+    height: 65,
+    margin: 8,
+    fontSize: 40,
+  },
+  calcInputContainer: {
+
+  },
   priceDetails: {
     textAlign: 'center',
     color: '#000000',
