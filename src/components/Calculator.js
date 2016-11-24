@@ -17,10 +17,8 @@ class MarketData extends Component {
   }
 
   enterVal1(val) {
-    // console.log('this.props.price.last_price:', this.props.price.last_price);
     const { last_price } = this.props.price;
-    // console.log('typeof val', typeof val);
-    let value2 = (Math.round((parseFloat(val) * parseFloat(last_price)) * 1000) / 1000).toString();
+    let value2 = (Math.round((parseFloat(val) * parseFloat(last_price)) * 100) / 100).toString();
     if (value2 === 'NaN') { value2 = '0' };
     this.setState({
       value1: val,
