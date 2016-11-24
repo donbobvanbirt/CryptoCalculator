@@ -40,6 +40,13 @@ export default StyleSheet.create({
     margin: 8,
     fontSize: 40,
   },
+  // calcInput: {
+  //   textAlign: 'center',
+  //   color: '#000000',
+  //   height: 65,
+  //   margin: 8,
+  //   fontSize: 40,
+  // },
   calcInputContainer: {
 
   },
