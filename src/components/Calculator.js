@@ -20,8 +20,11 @@ class MarketData extends Component {
   enterVal1(val) {
     const { last_price } = this.props.price;
     const { premium } = this.state;
+    let prem = parseFloat(premium);
+    console.log('prem:', prem);
+    if (!prem) { prem = 0; }
     const rate = parseFloat(last_price);
-    const price = rate + (rate * (parseFloat(premium) / 100));
+    const price = rate + (rate * (prem / 100));
     let value2 = (Math.round((parseFloat(val) * price) * 100) / 100).toString();
     if (value2 === 'NaN') { value2 = '0' };
     this.setState({
@@ -33,10 +36,12 @@ class MarketData extends Component {
   enterVal2(val) {
     const { last_price } = this.props.price;
     const { premium } = this.state;
+    let prem = parseFloat(premium);
+    if (!prem) { prem = 0; }
     const rate = parseFloat(last_price);
-    const price = rate + (rate * (parseFloat(premium) / 100));
+    const price = rate + (rate * (prem / 100));
     let value1 = (Math.round((parseFloat(val) / price) * 100000000) / 100000000).toString();
-    if (value1 === 'NaN') { value1 = '0' };
+    if (value1 === 'NaN') { value1 = '0'; }
     this.setState({
       value1,
       value2: val,
@@ -46,8 +51,10 @@ class MarketData extends Component {
   enterPremium(premium) {
     const { value1 } = this.state;
     const { last_price } = this.props.price;
+    let prem = parseFloat(premium);
+    if (!prem) { prem = 0; }
     const rate = parseFloat(last_price);
-    const price = rate + (rate * (parseFloat(premium) / 100));
+    const price = rate + (rate * (prem / 100));
     let value2 = (Math.round(price * 100) / 100).toString();
     if (value2 === 'NaN') { value2 = '0' };
 
@@ -89,7 +96,11 @@ class MarketData extends Component {
           <View style={styles.calcInputContainer}>
             <TextInput style={styles.calcInput} value={valueOne} keyboardType="numeric" onChangeText={val => this.enterVal1(val)} />
             <TextInput style={styles.calcInput} value={valueTwo} keyboardType="numeric" onChangeText={val => this.enterVal2(val)} />
-            <TextInput style={styles.calcInput} value={premium} keyboardType="numeric" onChangeText={val => this.enterPremium(val)} />
+            <View style={styles.premiumView}>
+              <Text style={styles.premiumSymbols}>+/-</Text>
+              <TextInput style={styles.premiumInput} value={premium} keyboardType="numeric" onChangeText={val => this.enterPremium(val)} />
+              <Text style={styles.premiumSymbols}>%</Text>
+            </View>
           </View>
         </View>
         <View style={styles.bottom}>

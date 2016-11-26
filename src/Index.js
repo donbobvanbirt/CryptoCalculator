@@ -14,6 +14,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <Navigator
+          platform={this.props.platform}
           initialRoute={{ index: 0 }}
           renderScene={(route, navigator) =>
             <NavContainer

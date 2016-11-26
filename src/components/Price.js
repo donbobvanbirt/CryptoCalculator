@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import styles from '../styles';
 import { fetchPrice } from '../actions/MarketActions';
+import PriceChart from './PriceChart';
 
 // @connect(null, dispatch => ({
 //   fetchPrice(pair) {
@@ -58,6 +59,7 @@ class Price extends Component {
         <Text style={styles.priceDetails}>
           Volume: {volume}
         </Text>
+        {/* <PriceChart /> */}
       </View>
     );
   }

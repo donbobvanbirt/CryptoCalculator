@@ -39,14 +39,26 @@ export default StyleSheet.create({
     height: 65,
     margin: 8,
     fontSize: 40,
+    borderWidth: 1,
   },
-  // calcInput: {
-  //   textAlign: 'center',
-  //   color: '#000000',
-  //   height: 65,
-  //   margin: 8,
-  //   fontSize: 40,
-  // },
+  premiumInput: {
+    textAlign: 'right',
+    color: '#000000',
+    height: 43,
+    margin: 8,
+    fontSize: 20,
+    borderWidth: 1,
+    width: 100,
+  },
+  premiumView: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    marginRight: 20,
+  },
+  premiumSymbols: {
+    fontSize: 25,
+  },
   calcInputContainer: {
 
   },

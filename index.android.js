@@ -6,8 +6,8 @@ import App from './src/Index';
 export default class cryptotrace extends Component {
   render() {
     return (
-      <App platform='android' />
-    )
+      <App platform="android" />
+    );
   }
 }
 
