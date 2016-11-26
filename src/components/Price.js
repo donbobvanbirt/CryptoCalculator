@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 
 import styles from '../styles';
@@ -25,6 +25,10 @@ class Price extends Component {
     console.log('click');
   }
 
+  refresh() {
+    console.log('refresh');
+  }
+
   render() {
     // console.log('props.price:', this.props.price)
     const { bid, ask, last_price, low, high, volume } = this.props.price;
@@ -37,6 +41,9 @@ class Price extends Component {
           <Button onPress={this.selectExchange} title={currentExchange} />
           <Button onPress={this.selectCurrency} title={currentCurrnecyPair} />
         </View>
+        <TouchableHighlight style={styles.refresh} onPress={() => this.props.fetchPrice('BTCUSD')}>
+          <Text style={styles.refreshText}>RELOAD</Text>
+        </TouchableHighlight>
         <Text style={styles.price}>
           {last_price}
         </Text>

@@ -59,9 +59,9 @@ export default StyleSheet.create({
   premiumSymbols: {
     fontSize: 25,
   },
-  calcInputContainer: {
-
-  },
+  // calcInputContainer: {
+  //
+  // },
   priceDetails: {
     textAlign: 'center',
     color: '#000000',
@@ -69,9 +69,15 @@ export default StyleSheet.create({
   },
   detailContainer: {
     flexDirection: 'row',
-    // alignItems: 'center',
     justifyContent: 'space-around',
     marginBottom: 5,
+  },
+  refresh: {
+    width: 75,
+    marginTop: 10,
+  },
+  refreshText: {
+    textAlign: 'right',
   },
   viewSelect: {
     color: '#c2c6ce',
