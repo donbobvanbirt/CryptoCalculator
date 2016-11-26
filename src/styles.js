@@ -78,6 +78,7 @@ export default StyleSheet.create({
   },
   refreshText: {
     textAlign: 'right',
+    color: '#34aaff',
   },
   viewSelect: {
     color: '#c2c6ce',
