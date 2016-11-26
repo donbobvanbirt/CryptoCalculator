@@ -49,6 +49,7 @@ export default StyleSheet.create({
     fontSize: 20,
     borderWidth: 1,
     width: 100,
+    paddingRight: 5,
   },
   premiumView: {
     alignItems: 'flex-end',

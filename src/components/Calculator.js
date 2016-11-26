@@ -78,7 +78,7 @@ class MarketData extends Component {
     const { last_price } = this.props.price;
     const valueOne = value1;
     const valueTwo = value2 === null ? last_price : value2;
-    console.log('last_price:', last_price);
+    // console.log('last_price:', last_price);
     const currentExchange = 'Bitfinex';
     const currentCurrnecyPair = 'BTC / USD';
     return (

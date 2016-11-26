@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import styles from '../styles';
 import { fetchPrice } from '../actions/MarketActions';
@@ -31,8 +32,9 @@ class Price extends Component {
 
   render() {
     // console.log('props.price:', this.props.price)
-    const { bid, ask, last_price, low, high, volume } = this.props.price;
-
+    const { bid, ask, last_price, low, high, volume, timestamp } = this.props.price;
+    const time = moment(timestamp * 1000).format('L h:mm a');
+    console.log('timestamp:', timestamp);
     const currentExchange = 'Bitfinex';
     const currentCurrnecyPair = 'BTC / USD';
     return (
@@ -65,6 +67,9 @@ class Price extends Component {
         </View>
         <Text style={styles.priceDetails}>
           Volume: {volume}
+        </Text>
+        <Text style={styles.priceDetails}>
+          {time}
         </Text>
         {/* <PriceChart /> */}
       </View>
