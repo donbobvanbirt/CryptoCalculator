@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Button, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../styles';
 import { fetchPrice } from '../actions/MarketActions';
@@ -37,6 +38,7 @@ class Price extends Component {
     console.log('timestamp:', timestamp);
     const currentExchange = 'Bitfinex';
     const currentCurrnecyPair = 'BTC / USD';
+    const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />)
     return (
       <View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -44,7 +46,8 @@ class Price extends Component {
           <Button onPress={this.selectCurrency} title={currentCurrnecyPair} />
         </View>
         <TouchableHighlight style={styles.refresh} onPress={() => this.props.fetchPrice('BTCUSD')}>
-          <Text style={styles.refreshText}>RELOAD</Text>
+          {refreshIcon}
+          {/* <Text style={styles.refreshText}>RELOAD</Text> */}
         </TouchableHighlight>
         <Text style={styles.price}>
           {last_price}

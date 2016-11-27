@@ -74,12 +74,13 @@ export default StyleSheet.create({
     marginBottom: 5,
   },
   refresh: {
-    width: 75,
+    width: 25,
     marginTop: 10,
+    marginLeft: 20,
   },
   refreshText: {
-    textAlign: 'right',
-    color: '#34aaff',
+    textAlign: 'center',
+    color: '#000000',
   },
   viewSelect: {
     color: '#c2c6ce',
