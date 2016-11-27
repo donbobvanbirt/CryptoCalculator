@@ -71,7 +71,9 @@ class Price extends Component {
         <Text style={styles.priceDetails}>
           {time}
         </Text>
-        {/* <PriceChart /> */}
+        <View style={styles.chartView}>
+          <PriceChart />
+        </View>
       </View>
     );
   }

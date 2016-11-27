@@ -86,4 +86,20 @@ export default StyleSheet.create({
     fontSize: 17,
     margin: 8,
   },
+  chartView: {
+    alignItems: 'center',
+  },
+  chartContainer: {
+    // flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#C6C6C6',
+    // borderWidth: 2,
+    width: 350,
+    height: 200,
+  },
+  chart: {
+    width: 350,
+    height: 200,
+  },
 });
