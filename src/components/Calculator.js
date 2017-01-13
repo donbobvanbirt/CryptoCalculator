@@ -68,19 +68,18 @@ class Calculator extends Component {
   }
 
   enterPremium(premium) {
-    const { value1 } = this.state;
+    const { value1, value2 } = this.state;
     const { last_price } = this.props.price;
     let prem = parseFloat(premium);
     if (!prem) { prem = 0; }
     const rate = parseFloat(last_price);
     const price = rate + (rate * (prem / 100));
-    let value2 = (Math.round(price * 100) / 100).toString();
-    if (value2 === 'NaN') { value2 = '0' };
-
+    // let value2 = (Math.round(price * 100) / 100).toString();
+    let newVal2 = (Math.round((parseFloat(value1) * price) * 100) / 100).toString();
+    if (newVal2 === 'NaN') { newVal2 = '0'; }
     this.setState({
       premium,
-      value1: '1',
-      value2,
+      value2: newVal2,
     });
   }
 
@@ -89,7 +88,7 @@ class Calculator extends Component {
     const { last_price } = this.props.price;
     const valueOne = value1;
     const valueTwo = value2 === null ? last_price : value2;
-    console.log('this.state:', this.state);
+    // console.log('this.state:', this.state);
     const currentExchange = 'Bitfinex';
     const currentCurrnecyPair = 'BTC / USD';
     const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />)
