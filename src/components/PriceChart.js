@@ -4,12 +4,7 @@ import Chart from 'react-native-chart';
 
 import styles from '../styles';
 
-let data = [
-  [2, 1],
-  [4, 9],
-  [3, 7],
-  [4, 9],
-];
+let data = [[0, 0]];
 
 export default class PriceChart extends Component {
   // console.log()
@@ -18,7 +13,7 @@ export default class PriceChart extends Component {
     // if (chartData) {
     const newdata = chartData.map((trade) => {
       const { timestamp, price } = trade;
-      return [parseFloat(timestamp), parseFloat(price)];
+      return [parseFloat(timestamp)/100000000, parseFloat(price)];
     });
     if (newdata[0]) {
       data = newdata;
@@ -35,7 +30,10 @@ export default class PriceChart extends Component {
           color="#000000"
           tightBounds={true}
           showGrid={false}
+          showXAxisLabels={false}
+          showAxis={false}
           lineWidth={2}
+          axisColor="#000000"
         />
       </View>
     );

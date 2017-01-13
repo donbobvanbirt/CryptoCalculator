@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View, TouchableHighlight, Text, Button, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import autobind from 'autobind-decorator';
+// import autobind from 'autobind-decorator';
 
 import styles from '../styles';
 import BottomLinks from './BottomLinks';
 
-class MarketData extends Component {
+class Calculator extends Component {
   constructor() {
     super();
     this.state = {
@@ -103,9 +103,9 @@ class MarketData extends Component {
             </View>
           </View>
         </View>
-        <View style={styles.bottom}>
+        {/* <View style={styles.bottom}>
           <BottomLinks />
-        </View>
+        </View> */}
       </View>
     );
   }
@@ -113,4 +113,4 @@ class MarketData extends Component {
 
 const mapStateToProps = state => ({ price: state.price });
 
-export default connect(mapStateToProps)(MarketData);
+export default connect(mapStateToProps)(Calculator);

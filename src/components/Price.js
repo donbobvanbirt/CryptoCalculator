@@ -6,7 +6,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../styles';
 import { fetchPrice, fetchChart } from '../actions/MarketActions';
-import PriceChart from './PriceChart';
+import Calculator from './Calculator';
+
+// import PriceChart from './PriceChart';
 
 // @connect(null, dispatch => ({
 //   fetchPrice(pair) {
@@ -76,8 +78,9 @@ class Price extends Component {
           {time}
         </Text>
         <View style={styles.chartView}>
-          <PriceChart chartData={this.props.chart} />
+          {/* <PriceChart chartData={this.props.chart} /> */}
         </View>
+        <Calculator />
       </View>
     );
   }
