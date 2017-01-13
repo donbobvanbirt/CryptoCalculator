@@ -19,16 +19,33 @@ class Calculator extends Component {
     this.enterVal1 = this.enterVal1.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { price } = nextProps;
+    if (price) {
+      // console.log('price:', price);
+      const { last_price } = price;
+      const { premium, value1 } = this.state;
+      let prem = parseFloat(premium);
+      if (!prem) { prem = 0; }
+      const rate = parseFloat(last_price);
+      const currentPrice = rate + (rate * (prem / 100));
+      const newVal2 = (Math.round((parseFloat(value1) * currentPrice) * 100) / 100).toString();
+      this.setState({
+        value2: newVal2,
+      });
+    }
+  }
+
   enterVal1(val) {
     const { last_price } = this.props.price;
     const { premium } = this.state;
     let prem = parseFloat(premium);
-    console.log('prem:', prem);
+    // console.log('prem:', prem);
     if (!prem) { prem = 0; }
     const rate = parseFloat(last_price);
     const price = rate + (rate * (prem / 100));
     let value2 = (Math.round((parseFloat(val) * price) * 100) / 100).toString();
-    if (value2 === 'NaN') { value2 = '0' };
+    if (value2 === 'NaN') { value2 = '0'; }
     this.setState({
       value1: val,
       value2,
@@ -72,7 +89,7 @@ class Calculator extends Component {
     const { last_price } = this.props.price;
     const valueOne = value1;
     const valueTwo = value2 === null ? last_price : value2;
-    // console.log('last_price:', last_price);
+    console.log('this.state:', this.state);
     const currentExchange = 'Bitfinex';
     const currentCurrnecyPair = 'BTC / USD';
     const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />)
