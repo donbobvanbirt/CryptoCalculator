@@ -10,8 +10,10 @@ export default StyleSheet.create({
   top: {
     flex: 1,
     backgroundColor: '#383838',
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // alignItems: 'flex-end',
+    // justifyContent: 'flex-end',
   },
   calculatorTop: {
     flex: 1,

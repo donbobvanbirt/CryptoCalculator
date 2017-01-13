@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../styles';
 import { fetchPrice, fetchChart } from '../actions/MarketActions';
-import Calculator from './Calculator';
+// import Calculator from './Calculator';
 
 // import PriceChart from './PriceChart';
 
@@ -39,19 +39,14 @@ class Price extends Component {
     const { bid, ask, last_price, low, high, volume, timestamp } = this.props.price;
     const time = moment(timestamp * 1000).format('L h:mm a');
     // console.log('timestamp:', timestamp);
-    const currentExchange = 'Bitfinex';
-    const currentCurrnecyPair = 'BTC / USD';
-    const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />)
+    // const currentExchange = 'Bitfinex';
+    // const currentCurrnecyPair = 'BTC / USD';
+    // const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />)
     return (
       <View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Button onPress={this.selectExchange} title={currentExchange} />
-          <Button onPress={this.selectCurrency} title={currentCurrnecyPair} />
-        </View>
-        <TouchableHighlight style={styles.refresh} onPress={() => this.props.fetchPrice('BTCUSD')}>
+        {/* <TouchableHighlight style={styles.refresh} onPress={() => this.props.fetchPrice('BTCUSD')}>
           {refreshIcon}
-          {/* <Text style={styles.refreshText}>RELOAD</Text> */}
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         <Text style={styles.price}>
           {last_price}
         </Text>
@@ -80,7 +75,7 @@ class Price extends Component {
         <View style={styles.chartView}>
           {/* <PriceChart chartData={this.props.chart} /> */}
         </View>
-        <Calculator />
+        {/* <Calculator /> */}
       </View>
     );
   }

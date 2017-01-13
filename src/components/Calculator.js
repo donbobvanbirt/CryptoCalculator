@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { View, TouchableHighlight, Text, Button, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-// import autobind from 'autobind-decorator';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../styles';
 import BottomLinks from './BottomLinks';
+import Price from './Price';
+import { fetchPrice } from '../actions/MarketActions';
 
 class Calculator extends Component {
   constructor() {
@@ -65,14 +67,6 @@ class Calculator extends Component {
     });
   }
 
-  selectExchange() {
-    console.log('click');
-  }
-
-  selectCurrency() {
-    console.log('click');
-  }
-
   render() {
     const { value1, value2, premium } = this.state;
     const { last_price } = this.props.price;
@@ -81,18 +75,23 @@ class Calculator extends Component {
     // console.log('last_price:', last_price);
     const currentExchange = 'Bitfinex';
     const currentCurrnecyPair = 'BTC / USD';
+    const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />)
+
     return (
       <View style={styles.container}>
-        <View style={styles.calculatorTop}>
+        {/* <View style={styles.calculatorTop}>
           <TouchableHighlight onPress={this.props.onBack}>
             <Text style={styles.viewSelect}>Back</Text>
           </TouchableHighlight>
-        </View>
+        </View> */}
+        <TouchableHighlight style={styles.refresh} onPress={() => this.props.fetchPrice('BTCUSD')}>
+          {refreshIcon}
+        </TouchableHighlight>
         <View style={styles.body}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Button onPress={this.selectExchange} title={currentExchange} />
             <Button onPress={this.selectCurrency} title={currentCurrnecyPair} />
-          </View>
+          </View> */}
           <View style={styles.calcInputContainer}>
             <TextInput style={styles.calcInput} value={valueOne} keyboardType="numeric" onChangeText={val => this.enterVal1(val)} />
             <TextInput style={styles.calcInput} value={valueTwo} keyboardType="numeric" onChangeText={val => this.enterVal2(val)} />
@@ -103,6 +102,7 @@ class Calculator extends Component {
             </View>
           </View>
         </View>
+        {/* <Price /> */}
         {/* <View style={styles.bottom}>
           <BottomLinks />
         </View> */}
@@ -112,5 +112,10 @@ class Calculator extends Component {
 }
 
 const mapStateToProps = state => ({ price: state.price });
+const mapDispatchToProps = dispatch => ({
+  fetchPrice(pair) {
+    dispatch(fetchPrice(pair));
+  },
+});
 
-export default connect(mapStateToProps)(Calculator);
+export default connect(mapStateToProps, mapDispatchToProps)(Calculator);
