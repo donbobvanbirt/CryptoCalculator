@@ -5,21 +5,12 @@ import moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../styles';
-import { fetchPrice, fetchChart } from '../actions/MarketActions';
-// import Calculator from './Calculator';
+import { fetchPrice } from '../actions/MarketActions';
 
-// import PriceChart from './PriceChart';
-
-// @connect(null, dispatch => ({
-//   fetchPrice(pair) {
-//     dispatch(fetchPrice(pair));
-//   },
-// }))
 class Price extends Component {
 
   componentWillMount() {
     this.props.fetchPrice('BTCUSD');
-    this.props.fetchChart();
   }
 
   selectExchange() {
@@ -35,20 +26,12 @@ class Price extends Component {
   }
 
   render() {
-    // console.log('props.price:', this.props.price)
     const { bid, ask, last_price, low, high, volume, timestamp } = this.props.price;
     const time = moment(timestamp * 1000).format('L h:mm a');
-    // console.log('timestamp:', timestamp);
-    // const currentExchange = 'Bitfinex';
-    // const currentCurrnecyPair = 'BTC / USD';
-    // const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />)
     return (
       <View>
-        {/* <TouchableHighlight style={styles.refresh} onPress={() => this.props.fetchPrice('BTCUSD')}>
-          {refreshIcon}
-        </TouchableHighlight> */}
         <Text style={styles.price}>
-          {last_price}
+          Last Price: {last_price}
         </Text>
         <View style={styles.detailContainer}>
           <Text style={styles.priceDetails}>
@@ -73,9 +56,7 @@ class Price extends Component {
           {time}
         </Text>
         <View style={styles.chartView}>
-          {/* <PriceChart chartData={this.props.chart} /> */}
         </View>
-        {/* <Calculator /> */}
       </View>
     );
   }
@@ -85,10 +66,7 @@ const mapDispatchToProps = dispatch => ({
   fetchPrice(pair) {
     dispatch(fetchPrice(pair));
   },
-  fetchChart() {
-    dispatch(fetchChart());
-  },
 });
-const mapStateToProps = state => ({ price: state.price, chart: state.chart });
+const mapStateToProps = state => ({ price: state.price });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Price);

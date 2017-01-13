@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { Navigator } from 'react-native';
+// import { Navigator } from 'react-native';
 import { Provider } from 'react-redux';
 
-import NavContainer from './components/NavContainer';
+// import NavContainer from './components/NavContainer';
 import store from './store';
+
+import MarketData from './components/MarketData';
 
 export default class App extends Component {
   render() {
-    // return (
-    //
-    //   <MarketData />
-    // );
     return (
       <Provider store={store}>
-        <Navigator
+        <MarketData />
+        {/* <Navigator
           platform={this.props.platform}
           initialRoute={{ index: 0 }}
           renderScene={(route, navigator) =>
@@ -34,7 +33,7 @@ export default class App extends Component {
               }}
             />
           }
-        />
+        /> */}
       </Provider>
     );
   }

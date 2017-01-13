@@ -3,17 +3,12 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // backgroundColor: '#000000',
   },
   top: {
     flex: 1,
     backgroundColor: '#383838',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // alignItems: 'flex-end',
-    // justifyContent: 'flex-end',
   },
   calculatorTop: {
     flex: 1,
@@ -33,7 +28,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#000000',
     marginBottom: 8,
-    fontSize: 60,
+    fontSize: 20,
   },
   calcInput: {
     textAlign: 'center',

@@ -23,11 +23,8 @@ export default class MarketData extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.top}>
-          {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}> */}
-            {/* <Text style={styles.viewSelect}>Calculator</Text> */}
             <Button onPress={this.selectExchange} title={currentExchange} />
             <Button onPress={this.selectCurrency} title={currentCurrnecyPair} />
-          {/* </View> */}
         </View>
         <View style={styles.body}>
           <Calculator />
