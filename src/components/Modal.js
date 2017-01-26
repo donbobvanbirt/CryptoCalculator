@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, TouchableHighlight, Text, Button, TextInput } from 'react-native';
 import ModalPicker from 'react-native-modal-picker'
 
+import styles from '../styles';
+
 export default class Modal extends Component {
 
   constructor() {
@@ -21,7 +23,7 @@ export default class Modal extends Component {
   render() {
     let index = 0;
     const data = [
-      { key: index++, section: true, label: 'Fruits' },
+      { key: index++, section: true, label: 'Select Exchange:' },
       { key: index++, label: 'Bitfinex' },
       { key: index++, label: 'Bitstamp' },
       { key: index++, label: 'Kraken' },
@@ -29,15 +31,18 @@ export default class Modal extends Component {
     ];
 
     return (
-      <View style={{ flex: 1, justifyContent: 'space-around', padding: 50 }}>
+      <View style={styles.modal}>
 
         <ModalPicker
           data={data}
           initValue="Select exchange"
-          onChange={(option)=>{ alert(`${option.label} (${option.key})`); }}
-        />
+          // onChange={(option)=>{ alert(`${option.label} (${option.key})`); }}
+          onChange={option => this.selectExchange(option)}
+        >
+          <Text style={{ borderWidth: 1, borderColor: '#ccc', padding: 10, height: 40, fontSize: 17 }}>{this.state.textInputValue}</Text>
+        </ModalPicker>
 
-        <ModalPicker
+        {/* <ModalPicker
           data={data}
           initValue="Select exchange"
           // onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
@@ -51,7 +56,7 @@ export default class Modal extends Component {
             value={this.state.textInputValue}
           />
 
-        </ModalPicker>
+        </ModalPicker> */}
       </View>
     );
   }

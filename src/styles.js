@@ -5,10 +5,17 @@ export default StyleSheet.create({
     flex: 1,
   },
   top: {
-    flex: 1,
-    backgroundColor: '#383838',
-    flexDirection: 'row',
+    flex: 2,
+    backgroundColor: '#C6C6C6',
+    // flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  modal: {
+    justifyContent: 'space-around',
+    paddingBottom: 15,
+    paddingTop: 25,
+    paddingRight: 25,
+    paddingLeft: 25,
   },
   calculatorTop: {
     flex: 1,

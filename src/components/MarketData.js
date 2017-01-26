@@ -24,16 +24,16 @@ export default class MarketData extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.top}>
-            <Button onPress={this.selectExchange} title={currentExchange} />
-            <Button onPress={this.selectCurrency} title={currentCurrnecyPair} />
+            {/* <Button onPress={this.selectExchange} title={currentExchange} />
+            <Button onPress={this.selectCurrency} title={currentCurrnecyPair} /> */}
+            <Modal />
         </View>
         <View style={styles.body}>
           <Calculator />
-        </View>
-        <View style={styles.body}>
           <Price />
-          <Modal />
         </View>
+        {/* <View style={styles.body}>
+        </View> */}
         <View style={styles.bottom}>
           <BottomLinks />
         </View>
