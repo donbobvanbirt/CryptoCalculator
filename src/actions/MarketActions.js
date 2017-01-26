@@ -1,12 +1,16 @@
 import axios from 'axios';
 
-export function fetchPrice(currencyPair) {
-  const url = `https://api.bitfinex.com/v1/pubticker/${currencyPair}`;
+export function fetchPrice(exchange) {
 
-  return {
-    type: 'FETCH_PRICE',
-    payload: axios.get(url).then(res => res.data),
-  };
+      // const url = 'https://api.bitfinex.com/v1/pubticker/BTCUSD';
+      // data = axios.get('https://api.bitfinex.com/v1/pubticker/BTCUSD').then(res => res.data);
+  if (exchange === 'Bitfinex') {
+    // console.log('exchange:', exchange);
+    return {
+      type: 'FETCH_PRICE',
+      payload: axios.get('https://api.bitfinex.com/v1/pubticker/BTCUSD').then(res => res.data),
+    };
+  }
 }
 
 // export function fetchChart() {

@@ -1,38 +1,51 @@
 import React, { Component } from 'react';
-import { View, TouchableHighlight, Text, Button } from 'react-native';
+import { View } from 'react-native';
+import { connect } from 'react-redux';
 
 import styles from '../styles';
 import Price from './Price';
 import Calculator from './Calculator';
 import BottomLinks from './BottomLinks';
 import Modal from './Modal';
+import { fetchPrice } from '../actions/MarketActions';
 
-export default class MarketData extends Component {
-
-  selectExchange() {
-    console.log('click');
+class MarketData extends Component {
+  constructor() {
+    super();
+    this.state = {
+      textInputValue: 'Bitfinex',
+    };
   }
 
-  selectCurrency() {
-    console.log('click');
+  componentWillMount() {
+    this.props.fetchPrice(this.state.textInputValue);
+  }
+
+  getPrice = () => {
+    this.props.fetchPrice(this.state.textInputValue);
+  }
+
+  selectExchange = (option) => {
+    // console.log('option:', option.label);
+    this.setState({ textInputValue: option.label });
+    // this.props.fetchPrice(option.label);
   }
 
   render() {
-    const currentExchange = 'Bitfinex';
-    const currentCurrnecyPair = 'BTC / USD';
+    const { price } = this.props;
 
     return (
       <View style={styles.container}>
         <View style={styles.top}>
             {/* <Button onPress={this.selectExchange} title={currentExchange} />
             <Button onPress={this.selectCurrency} title={currentCurrnecyPair} /> */}
-            <Modal />
+          <Modal textInputValue={this.state.textInputValue} selectExchange={this.selectExchange} />
         </View>
         <View style={styles.body}>
-          <Calculator />
+          <Calculator price={price} fetchPrice={this.getPrice} />
         </View>
         <View style={styles.priceView}>
-          <Price />
+          <Price price={price} />
         </View>
         <View style={styles.bottom}>
           <BottomLinks />
@@ -41,3 +54,12 @@ export default class MarketData extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  fetchPrice(pair) {
+    dispatch(fetchPrice(pair));
+  },
+});
+const mapStateToProps = state => ({ price: state.price });
+
+export default connect(mapStateToProps, mapDispatchToProps)(MarketData);

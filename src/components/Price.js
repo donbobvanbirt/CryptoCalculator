@@ -1,29 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TouchableHighlight } from 'react-native';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../styles';
-import { fetchPrice } from '../actions/MarketActions';
+// import { fetchPrice } from '../actions/MarketActions';
 
-class Price extends Component {
-
-  componentWillMount() {
-    this.props.fetchPrice('BTCUSD');
-  }
-
-  selectExchange() {
-    console.log('click');
-  }
-
-  selectCurrency() {
-    console.log('click');
-  }
-
-  refresh() {
-    console.log('refresh');
-  }
+export default class Price extends Component {
 
   render() {
     const { bid, ask, last_price, low, high, volume, timestamp } = this.props.price;
@@ -61,12 +45,3 @@ class Price extends Component {
     );
   }
 }
-
-const mapDispatchToProps = dispatch => ({
-  fetchPrice(pair) {
-    dispatch(fetchPrice(pair));
-  },
-});
-const mapStateToProps = state => ({ price: state.price });
-
-export default connect(mapStateToProps, mapDispatchToProps)(Price);

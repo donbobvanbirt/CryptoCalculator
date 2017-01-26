@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { View, TouchableHighlight, Text, Button, TextInput } from 'react-native';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../styles';
 // import BottomLinks from './BottomLinks';
 import Price from './Price';
-import { fetchPrice } from '../actions/MarketActions';
+// import { fetchPrice } from '../actions/MarketActions';
 
-class Calculator extends Component {
+export default class Calculator extends Component {
   constructor() {
     super();
     this.state = {
@@ -95,7 +95,7 @@ class Calculator extends Component {
 
     return (
       <View style={styles.container}>
-        <TouchableHighlight style={styles.refresh} onPress={() => this.props.fetchPrice('BTCUSD')}>
+        <TouchableHighlight style={styles.refresh} onPress={this.props.fetchPrice}>
           {refreshIcon}
         </TouchableHighlight>
         <View style={styles.body}>
@@ -113,12 +113,3 @@ class Calculator extends Component {
     );
   }
 }
-
-const mapStateToProps = state => ({ price: state.price });
-const mapDispatchToProps = dispatch => ({
-  fetchPrice(pair) {
-    dispatch(fetchPrice(pair));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Calculator);

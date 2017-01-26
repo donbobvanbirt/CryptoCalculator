@@ -1,25 +1,13 @@
 import React, { Component } from 'react';
-import { View, TouchableHighlight, Text, Button, TextInput } from 'react-native';
-import ModalPicker from 'react-native-modal-picker'
+import { View, Text } from 'react-native';
+import ModalPicker from 'react-native-modal-picker';
 
 import styles from '../styles';
 
 export default class Modal extends Component {
 
-  constructor() {
-    super();
-
-    this.state = {
-      textInputValue: 'Bitfinex'
-    }
-  }
-
-  selectExchange = (option) => {
-    console.log('option:', option.label);
-    this.setState({ textInputValue: option.label });
-  }
-
   render() {
+    const { textInputValue, selectExchange } = this.props;
     let index = 0;
     const data = [
       { key: index++, section: true, label: 'Select Exchange:' },
@@ -35,9 +23,9 @@ export default class Modal extends Component {
         <ModalPicker
           data={data}
           initValue="Select exchange"
-          onChange={option => this.selectExchange(option)}
+          onChange={option => selectExchange(option)}
         >
-          <Text style={styles.modalText}>{`${this.state.textInputValue}  BTC/USD`}</Text>
+          <Text style={styles.modalText}>{`${textInputValue}  BTC/USD`}</Text>
         </ModalPicker>
       </View>
     );
