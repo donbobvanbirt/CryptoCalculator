@@ -28,7 +28,7 @@ class MarketData extends Component {
   selectExchange = (option) => {
     // console.log('option:', option.label);
     this.setState({ textInputValue: option.label });
-    // this.props.fetchPrice(option.label);
+    this.props.fetchPrice(option.label);
   }
 
   render() {
