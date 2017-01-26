@@ -31,7 +31,7 @@ export default class MarketData extends Component {
         <View style={styles.body}>
           <Calculator />
         </View>
-        <View style={styles.body}>
+        <View style={styles.priceView}>
           <Price />
         </View>
         <View style={styles.bottom}>

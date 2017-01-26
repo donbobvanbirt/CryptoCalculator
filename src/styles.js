@@ -37,6 +37,10 @@ export default StyleSheet.create({
     flex: 9,
     backgroundColor: '#C6C6C6',
   },
+  priceView: {
+    flex: 7,
+    backgroundColor: '#C6C6C6',
+  },
   bottom: {
     flex: 1,
     backgroundColor: '#383838',
@@ -89,7 +93,7 @@ export default StyleSheet.create({
   },
   refresh: {
     width: 25,
-    // marginTop: 10,
+    marginTop: 10,
     marginLeft: 20,
   },
   refreshText: {
