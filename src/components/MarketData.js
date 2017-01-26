@@ -5,6 +5,7 @@ import styles from '../styles';
 import Price from './Price';
 import Calculator from './Calculator';
 import BottomLinks from './BottomLinks';
+import Modal from './Modal';
 
 export default class MarketData extends Component {
 
@@ -31,6 +32,7 @@ export default class MarketData extends Component {
         </View>
         <View style={styles.body}>
           <Price />
+          <Modal />
         </View>
         <View style={styles.bottom}>
           <BottomLinks />
