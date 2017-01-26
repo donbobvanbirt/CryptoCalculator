@@ -30,10 +30,10 @@ export default class MarketData extends Component {
         </View>
         <View style={styles.body}>
           <Calculator />
+        </View>
+        <View style={styles.body}>
           <Price />
         </View>
-        {/* <View style={styles.body}>
-        </View> */}
         <View style={styles.bottom}>
           <BottomLinks />
         </View>

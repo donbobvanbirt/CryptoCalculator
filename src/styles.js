@@ -5,17 +5,27 @@ export default StyleSheet.create({
     flex: 1,
   },
   top: {
-    flex: 2,
+    // flex: 1.9,
+    height: 70,
     backgroundColor: '#C6C6C6',
     // flexDirection: 'row',
     justifyContent: 'space-between',
   },
   modal: {
     justifyContent: 'space-around',
+    backgroundColor: '#383838',
     paddingBottom: 15,
-    paddingTop: 25,
+    paddingTop: 15,
     paddingRight: 25,
     paddingLeft: 25,
+  },
+  modalText: {
+    borderWidth: 1,
+    // borderColor: '#C6C6C6',
+    color: '#C6C6C6',
+    padding: 10,
+    height: 40,
+    fontSize: 17,
   },
   calculatorTop: {
     flex: 1,
@@ -79,7 +89,7 @@ export default StyleSheet.create({
   },
   refresh: {
     width: 25,
-    marginTop: 10,
+    // marginTop: 10,
     marginLeft: 20,
   },
   refreshText: {
