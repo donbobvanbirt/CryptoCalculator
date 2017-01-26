@@ -15,6 +15,7 @@ export default class Modal extends Component {
       { key: index++, label: 'Bitstamp' },
       { key: index++, label: 'Kraken' },
       { key: index++, label: 'BTC-e' },
+      { key: index++, label: 'Okcoin' },
     ];
 
     return (

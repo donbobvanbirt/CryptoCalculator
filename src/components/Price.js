@@ -11,7 +11,8 @@ export default class Price extends Component {
 
   render() {
     const { bid, ask, last_price, last, low, high, volume, timestamp } = this.props.price;
-    const time = moment(timestamp * 1000).format('L h:mm a');
+    let time = '';
+    if (timestamp) time = moment(timestamp * 1000).format('L h:mm a');
     return (
       <View>
         <Text style={styles.price}>
