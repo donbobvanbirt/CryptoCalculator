@@ -30,12 +30,12 @@ export function fetchPrice(exchange) {
       .then((res) => {
         const { a, b, c, v, l, h } = res.data.result.XXBTZUSD;
         return {
-          ask: a[0],
-          bid: b[0],
-          last_price: c[0],
+          ask: (Math.round(parseFloat(a[0]) * 100) / 100).toString(),
+          bid: (Math.round(parseFloat(b[0]) * 100) / 100).toString(),
+          last_price: (Math.round(parseFloat(c[0]) * 100) / 100).toString(),
           volume: v[1],
-          low: l[1],
-          high: h[1],
+          low: (Math.round(parseFloat(l[1]) * 100) / 100).toString(),
+          high: (Math.round(parseFloat(h[1]) * 100) / 100).toString(),
           timestamp: null,
         };
       });

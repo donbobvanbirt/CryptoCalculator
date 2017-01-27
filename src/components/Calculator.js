@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { View, TouchableHighlight, Text, Button, TextInput } from 'react-native';
+import { View, TouchableHighlight, Text, TextInput } from 'react-native';
 // import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../styles';
-// import BottomLinks from './BottomLinks';
-import Price from './Price';
-// import { fetchPrice } from '../actions/MarketActions';
 
 export default class Calculator extends Component {
   constructor() {
@@ -22,7 +19,6 @@ export default class Calculator extends Component {
   componentWillReceiveProps(nextProps) {
     const { price } = nextProps;
     if (price) {
-      // console.log('price:', price);
       const { last_price } = price;
       const { premium, value1 } = this.state;
       let prem = parseFloat(premium);
@@ -68,13 +64,12 @@ export default class Calculator extends Component {
   }
 
   enterPremium(premium) {
-    const { value1, value2 } = this.state;
+    const { value1 } = this.state;
     const { last_price } = this.props.price;
     let prem = parseFloat(premium);
     if (!prem) { prem = 0; }
     const rate = parseFloat(last_price);
     const price = rate + (rate * (prem / 100));
-    // let value2 = (Math.round(price * 100) / 100).toString();
     let newVal2 = (Math.round((parseFloat(value1) * price) * 100) / 100).toString();
     if (newVal2 === 'NaN') { newVal2 = '0'; }
     this.setState({

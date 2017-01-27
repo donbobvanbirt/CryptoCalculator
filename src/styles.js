@@ -5,10 +5,8 @@ export default StyleSheet.create({
     flex: 1,
   },
   top: {
-    // flex: 1.9,
     height: 70,
     backgroundColor: '#C6C6C6',
-    // flexDirection: 'row',
     justifyContent: 'space-between',
   },
   modal: {
@@ -21,7 +19,6 @@ export default StyleSheet.create({
   },
   modalText: {
     borderWidth: 1,
-    // borderColor: '#C6C6C6',
     color: '#C6C6C6',
     padding: 10,
     height: 40,
@@ -78,9 +75,6 @@ export default StyleSheet.create({
   premiumSymbols: {
     fontSize: 25,
   },
-  // calcInputContainer: {
-  //
-  // },
   priceDetails: {
     textAlign: 'center',
     color: '#000000',
@@ -104,21 +98,5 @@ export default StyleSheet.create({
     color: '#c2c6ce',
     fontSize: 17,
     margin: 8,
-  },
-  chartView: {
-    alignItems: 'center',
-  },
-  chartContainer: {
-    // flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#C6C6C6',
-    // borderWidth: 2,
-    width: 350,
-    height: 200,
-  },
-  chart: {
-    width: 350,
-    height: 200,
   },
 });

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { TouchableHighlight, View, Text, Linking } from 'react-native';
+import { TouchableHighlight, Text, Linking } from 'react-native';
 
 import styles from '../styles';
 
 export default class BottomLinks extends Component {
   handleClick() {
-    console.log('click');
+    // console.log('click');
     Linking.canOpenURL('https://www.coinbase.com/join/donovan')
       .then((supported) => {
         if (supported) {
