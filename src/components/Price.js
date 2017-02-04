@@ -8,12 +8,12 @@ import styles from '../styles';
 export default class Price extends Component {
 
   render() {
-    const { bid, ask, last_price, low, high, volume, timestamp } = this.props.price;
+    const { bid, ask, last, low, high, vol, timestamp } = this.props.price;
     const time = timestamp ? moment(timestamp * 1000).format('L h:mm a') : '';
     return (
       <View>
         <Text style={styles.price}>
-          Last Price: {last_price}
+          Last Price: {last}
         </Text>
         <View style={styles.detailContainer}>
           <Text style={styles.priceDetails}>
@@ -32,7 +32,7 @@ export default class Price extends Component {
           </Text>
         </View>
         <Text style={styles.priceDetails}>
-          Volume: {volume}
+          Volume: {vol}
         </Text>
         <Text style={styles.priceDetails}>
           {time}
