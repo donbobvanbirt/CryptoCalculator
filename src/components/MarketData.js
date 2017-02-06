@@ -169,6 +169,7 @@ class MarketData extends Component {
         <View style={styles.body}>
           <Calculator
             price={price}
+            pair={pair}
             fetchPrice={this.getPrice}
             roundFactor1={roundFactor1}
             roundFactor2={roundFactor2}

@@ -90,6 +90,8 @@ export default class Calculator extends Component {
     const currentExchange = 'Bitfinex';
     const currentCurrnecyPair = 'BTC / USD';
     const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />)
+    const val1Label = this.props.pair.split('/')[0];
+    const val2Label = this.props.pair.split('/')[1];
 
     return (
       <View style={styles.container}>
@@ -99,7 +101,9 @@ export default class Calculator extends Component {
         <View style={styles.body}>
           <View style={styles.calcInputContainer}>
             <TextInput style={styles.calcInput} value={valueOne} keyboardType="numeric" onChangeText={val => this.enterVal1(val)} />
+            <Text style={styles.assetLabel}>{val1Label}</Text>
             <TextInput style={styles.calcInput} value={valueTwo} keyboardType="numeric" onChangeText={val => this.enterVal2(val)} />
+            <Text style={styles.assetLabel}>{val2Label}</Text>
             <View style={styles.premiumView}>
               <Text style={styles.premiumSymbols}>+/-</Text>
               <TextInput style={styles.premiumInput} value={premium} keyboardType="numeric" onChangeText={val => this.enterPremium(val)} />

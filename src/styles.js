@@ -30,6 +30,10 @@ export default StyleSheet.create({
     height: 40,
     fontSize: 17,
   },
+  assetLabel: {
+    textAlign: 'center',
+    marginTop: -7,
+  },
   calculatorTop: {
     flex: 1,
     backgroundColor: '#383838',
@@ -41,7 +45,7 @@ export default StyleSheet.create({
     backgroundColor: '#C6C6C6',
   },
   priceView: {
-    flex: 7,
+    flex: 5,
     backgroundColor: '#C6C6C6',
   },
   bottom: {
