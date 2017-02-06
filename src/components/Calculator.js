@@ -83,19 +83,22 @@ export default class Calculator extends Component {
 
   render() {
     const { value1, value2, premium } = this.state;
-    const { last } = this.props.price;
+    const { price, fetchPrice } = this.props;
+    const { last, pair } = price;
     const valueOne = value1;
     const valueTwo = value2 === null ? last : value2;
-    // console.log('this.state:', this.state);1.
-    const currentExchange = 'Bitfinex';
-    const currentCurrnecyPair = 'BTC / USD';
     const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />)
-    const val1Label = this.props.pair.split('/')[0];
-    const val2Label = this.props.pair.split('/')[1];
+
+    let val1Label = '';
+    let val2Label = '';
+    if (pair) {
+      val1Label = pair.slice(0, 3).toUpperCase();
+      val2Label = pair.slice(3).toUpperCase();
+    }
 
     return (
       <View style={styles.container}>
-        <TouchableHighlight style={styles.refresh} onPress={this.props.fetchPrice}>
+        <TouchableHighlight style={styles.refresh} onPress={fetchPrice}>
           {refreshIcon}
         </TouchableHighlight>
         <View style={styles.body}>
