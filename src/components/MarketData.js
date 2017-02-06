@@ -127,11 +127,13 @@ class MarketData extends Component {
   }
 
   selectExchange = (option) => {
+    const { pair } = this.state;
+    const currentPair = availablePairs[option.label].includes(pair) ? pair : 'BTC/USD';
     this.setState({
       exchange: option.label,
-      pair: 'BTC/USD',
+      pair: currentPair,
     });
-    this.props.fetchPrice(option.label, 'btcusd');
+    this.props.fetchPrice(option.label, currentPair);
   }
 
   selectPair = (option) => {
