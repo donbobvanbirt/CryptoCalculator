@@ -9,34 +9,127 @@ import BottomLinks from './BottomLinks';
 import Modal from './Modal';
 import { fetchPrice } from '../actions/MarketActions';
 
+const availablExchanges = [
+  // { key: 1, section: true, label: 'Select Exchange:' },
+  'Bitfinex',
+  'Bitstamp',
+  'Kraken',
+  'BTC-e',
+  'Okcoin',
+];
+
+const availablePairs = {
+  Bitfinex: [
+    // { key: 1, section: true, label: 'Select Currency Pair:' },
+    'BTC/USD',
+    'LTC/USD',
+    'LTC/BTC',
+    'ETH/USD',
+    'ETH/BTC',
+    'ETC/BTC',
+    'ETC/USD',
+    'RRT/USD',
+    'RRT/BTC',
+    'ZEC/USD',
+    'ZEC/BTC',
+  ],
+  Bitstamp: [
+    'BTC/USD',
+    'BTC/EUR',
+    'EUR/USD',
+    'XRP/USD',
+    'XRP/EUR',
+  ],
+  Kraken: [
+    'BTC/USD',
+    'ETC/BTC',
+    'ETC/EUR',
+    'ETC/USD',
+    'ETH/BTC',
+    'ETH/CAD',
+    'ETH/EUR',
+    'ETH/GBP',
+    'ETH/JPY',
+    'ETH/USD',
+    'LTC/BTC',
+    'LTC/EUR',
+    'LTC/USD',
+    'BTC/CAD',
+    'BTC/EUR',
+    'BTC/GBP',
+    'BTC/JPY',
+  ],
+  'BTC-e': [
+    'BTC/USD',
+    'BTC/RUR',
+    'BTC/EUR',
+    'LTC/BTC',
+    'LTC/USD',
+    'LTC/RUR',
+    'LTC/EUR',
+    'NMC/BTC',
+    'NMC/USD',
+    'NVC/BTC',
+    'NVC/USD',
+    'USD/RUR',
+    'EUR/USD',
+    'EUR/RUR',
+    'PPC/BTC',
+    'PPC/USD',
+    'DSH/BTC',
+    'DSH/USD',
+    'ETH/BTC',
+    'ETH/USD',
+    'ETH/EUR',
+    'ETH/LTC',
+    'ETH/RUR',
+  ],
+  Okcoin: [
+    'BTC/USD',
+    'LTC/USD',
+  ],
+};
+
 class MarketData extends Component {
   constructor() {
     super();
     this.state = {
-      textInputValue: 'Bitfinex',
+      exchange: 'Bitfinex',
+      pair: 'BTC/USD',
     };
   }
 
   componentWillMount() {
-    this.props.fetchPrice(this.state.textInputValue);
+    const { exchange, pair } = this.state;
+    this.props.fetchPrice(exchange, pair);
   }
 
   getPrice = () => {
-    this.props.fetchPrice(this.state.textInputValue);
+    const { exchange, pair } = this.state;
+    this.props.fetchPrice(exchange, pair);
   }
 
   selectExchange = (option) => {
-    this.setState({ textInputValue: option.label });
-    this.props.fetchPrice(option.label);
+    this.setState({
+      exchange: option.label,
+      pair: 'BTC/USD',
+    });
+    this.props.fetchPrice(option.label, 'btcusd');
+  }
+
+  selectPair = (option) => {
+    this.setState({ pair: option.label });
+    this.props.fetchPrice(this.state.exchange, option.label);
   }
 
   render() {
     const { price } = this.props;
-
+    const { exchange, pair } = this.state;
     return (
       <View style={styles.container}>
         <View style={styles.top}>
-          <Modal textInputValue={this.state.textInputValue} selectExchange={this.selectExchange} />
+          <Modal textInputValue={exchange} data={availablExchanges} select={this.selectExchange} />
+          <Modal textInputValue={pair} data={availablePairs[exchange]} select={this.selectPair} />
         </View>
         <View style={styles.body}>
           <Calculator price={price} fetchPrice={this.getPrice} />
@@ -53,8 +146,8 @@ class MarketData extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchPrice(pair) {
-    dispatch(fetchPrice(pair));
+  fetchPrice(exchange, pair) {
+    dispatch(fetchPrice(exchange, pair));
   },
 });
 const mapStateToProps = state => ({ price: state.price });

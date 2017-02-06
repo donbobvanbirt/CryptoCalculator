@@ -7,26 +7,21 @@ import styles from '../styles';
 export default class Modal extends Component {
 
   render() {
-    const { textInputValue, selectExchange } = this.props;
-    let index = 0;
-    const data = [
-      { key: index++, section: true, label: 'Select Exchange:' },
-      { key: index++, label: 'Bitfinex' },
-      { key: index++, label: 'Bitstamp' },
-      { key: index++, label: 'Kraken' },
-      { key: index++, label: 'BTC-e' },
-      { key: index++, label: 'Okcoin' },
-    ];
-
+    const { textInputValue, select, data } = this.props;
+    const listData = data.map((item, index) => {
+      // console.log('index:', index);
+      return { key: index + 1, label: item };
+    });
+    // listData.unshift({ })
     return (
       <View style={styles.modal}>
 
         <ModalPicker
-          data={data}
+          data={listData}
           initValue="Select exchange"
-          onChange={option => selectExchange(option)}
+          onChange={option => select(option)}
         >
-          <Text style={styles.modalText}>{`${textInputValue}  BTC/USD`}</Text>
+          <Text style={styles.modalText}>{textInputValue}</Text>
         </ModalPicker>
       </View>
     );

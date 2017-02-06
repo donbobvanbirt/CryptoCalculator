@@ -6,11 +6,17 @@ export default StyleSheet.create({
   },
   top: {
     height: 70,
-    backgroundColor: '#C6C6C6',
+    backgroundColor: '#383838',
     justifyContent: 'space-between',
+
+    // display: '-webkit-flex',
+    // display: 'flex',
+    // '-webkit-flex-direction': 'row',
+    flexDirection: 'row',
   },
   modal: {
     justifyContent: 'space-around',
+    // width: 200,
     backgroundColor: '#383838',
     paddingBottom: 15,
     paddingTop: 15,
