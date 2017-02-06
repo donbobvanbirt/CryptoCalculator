@@ -25,7 +25,7 @@ export default class Calculator extends Component {
       if (!prem) { prem = 0; }
       const rate = parseFloat(last);
       const currentPrice = rate + (rate * (prem / 100));
-      const newVal2 = (Math.round((parseFloat(value1) * currentPrice) * 100) / 100).toString();
+      const newVal2 = (Math.round((parseFloat(value1) * currentPrice) * this.props.roundFactor2) / this.props.roundFactor2).toString();
       this.setState({
         value2: newVal2,
       });
@@ -34,13 +34,14 @@ export default class Calculator extends Component {
 
   enterVal1(val) {
     const { last } = this.props.price;
+    const { roundFactor2 } = this.props;
     const { premium } = this.state;
     let prem = parseFloat(premium);
     // console.log('prem:', prem);
     if (!prem) { prem = 0; }
     const rate = parseFloat(last);
     const price = rate + (rate * (prem / 100));
-    let value2 = (Math.round((parseFloat(val) * price) * 100) / 100).toString();
+    let value2 = (Math.round((parseFloat(val) * price) * roundFactor2) / roundFactor2).toString();
     if (value2 === 'NaN') { value2 = '0'; }
     this.setState({
       value1: val,
@@ -50,12 +51,13 @@ export default class Calculator extends Component {
 
   enterVal2(val) {
     const { last } = this.props.price;
+    const { roundFactor1 } = this.props;
     const { premium } = this.state;
     let prem = parseFloat(premium);
     if (!prem) { prem = 0; }
     const rate = parseFloat(last);
     const price = rate + (rate * (prem / 100));
-    let value1 = (Math.round((parseFloat(val) / price) * 100000000) / 100000000).toString();
+    let value1 = (Math.round((parseFloat(val) / price) * roundFactor1) / roundFactor1).toString();
     if (value1 === 'NaN') { value1 = '0'; }
     this.setState({
       value1,
@@ -65,12 +67,13 @@ export default class Calculator extends Component {
 
   enterPremium(premium) {
     const { value1 } = this.state;
+    const { roundFactor2 } = this.props;
     const { last } = this.props.price;
     let prem = parseFloat(premium);
     if (!prem) { prem = 0; }
     const rate = parseFloat(last);
     const price = rate + (rate * (prem / 100));
-    let newVal2 = (Math.round((parseFloat(value1) * price) * 100) / 100).toString();
+    let newVal2 = (Math.round((parseFloat(value1) * price) * roundFactor2) / roundFactor2).toString();
     if (newVal2 === 'NaN') { newVal2 = '0'; }
     this.setState({
       premium,
@@ -83,7 +86,7 @@ export default class Calculator extends Component {
     const { last } = this.props.price;
     const valueOne = value1;
     const valueTwo = value2 === null ? last : value2;
-    // console.log('this.state:', this.state);
+    // console.log('this.state:', this.state);1.
     const currentExchange = 'Bitfinex';
     const currentCurrnecyPair = 'BTC / USD';
     const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />)

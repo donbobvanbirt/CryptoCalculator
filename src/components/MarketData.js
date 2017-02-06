@@ -10,7 +10,6 @@ import Modal from './Modal';
 import { fetchPrice } from '../actions/MarketActions';
 
 const availablExchanges = [
-  // { key: 1, section: true, label: 'Select Exchange:' },
   'Bitfinex',
   'Bitstamp',
   'Kraken',
@@ -20,7 +19,6 @@ const availablExchanges = [
 
 const availablePairs = {
   Bitfinex: [
-    // { key: 1, section: true, label: 'Select Currency Pair:' },
     'BTC/USD',
     'LTC/USD',
     'LTC/BTC',
@@ -90,6 +88,25 @@ const availablePairs = {
   ],
 };
 
+const cryptoPairs = [
+  'LTC/BTC',
+  'ETH/BTC',
+  'ETC/BTC',
+  'RRT/BTC',
+  'ZEC/BTC',
+  'NMC/BTC',
+  'NVC/BTC',
+  'PPC/BTC',
+  'DSH/BTC',
+  'ETH/LTC',
+];
+
+const fiatPairs = [
+  'USD/RUR',
+  'EUR/USD',
+  'EUR/RUR',
+];
+
 class MarketData extends Component {
   constructor() {
     super();
@@ -125,14 +142,35 @@ class MarketData extends Component {
   render() {
     const { price } = this.props;
     const { exchange, pair } = this.state;
+    let roundFactor1 = 100000000;
+    let roundFactor2 = 1000;
+    if (cryptoPairs.includes(pair)) {
+      roundFactor2 = 100000000;
+    } else if (fiatPairs.includes(pair)) {
+      roundFactor1 = 1000;
+    }
+
     return (
       <View style={styles.container}>
         <View style={styles.top}>
-          <Modal textInputValue={exchange} data={availablExchanges} select={this.selectExchange} />
-          <Modal textInputValue={pair} data={availablePairs[exchange]} select={this.selectPair} />
+          <Modal
+            textInputValue={exchange}
+            data={availablExchanges}
+            select={this.selectExchange}
+          />
+          <Modal
+            textInputValue={pair}
+            data={availablePairs[exchange]}
+            select={this.selectPair}
+          />
         </View>
         <View style={styles.body}>
-          <Calculator price={price} fetchPrice={this.getPrice} />
+          <Calculator
+            price={price}
+            fetchPrice={this.getPrice}
+            roundFactor1={roundFactor1}
+            roundFactor2={roundFactor2}
+          />
         </View>
         <View style={styles.priceView}>
           <Price price={price} />
