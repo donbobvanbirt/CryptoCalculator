@@ -159,11 +159,13 @@ class MarketData extends Component {
             textInputValue={exchange}
             data={availablExchanges}
             select={this.selectExchange}
+            menueTitle="Select Exchange:"
           />
           <Modal
             textInputValue={pair}
             data={availablePairs[exchange]}
             select={this.selectPair}
+            menueTitle={`Available asset pairs for ${exchange}:`}
           />
         </View>
         <View style={styles.body}>

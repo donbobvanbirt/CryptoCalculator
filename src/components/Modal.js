@@ -7,12 +7,12 @@ import styles from '../styles';
 export default class Modal extends Component {
 
   render() {
-    const { textInputValue, select, data } = this.props;
+    const { textInputValue, select, data, menueTitle } = this.props;
     const listData = data.map((item, index) => {
       // console.log('index:', index);
-      return { key: index + 1, label: item };
+      return { key: index + 2, label: item };
     });
-    // listData.unshift({ })
+    listData.unshift({ key: 1, section: true, label: menueTitle })
     return (
       <View style={styles.modal}>
 
