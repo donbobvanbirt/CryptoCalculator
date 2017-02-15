@@ -3,7 +3,7 @@ import { AppRegistry } from 'react-native';
 
 import App from './src/Index';
 
-export default class cryptotrace extends Component {
+export default class CryptoCalculator extends Component {
   render() {
     return (
       <App platform="android" />
@@ -11,4 +11,4 @@ export default class cryptotrace extends Component {
   }
 }
 
-AppRegistry.registerComponent('cryptotrace', () => cryptotrace);
+AppRegistry.registerComponent('CryptoCalculator', () => CryptoCalculator);
