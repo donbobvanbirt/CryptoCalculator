@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import styles from '../styles';
 import Price from './Price';
@@ -144,6 +145,9 @@ class MarketData extends Component {
   render() {
     const { price } = this.props;
     const { exchange, pair } = this.state;
+
+    const emptyPrice = _.isEmpty(price);
+    console.log('emptyPrice:', emptyPrice);
     let roundFactor1 = 100000000;
     let roundFactor2 = 1000;
     if (cryptoPairs.includes(pair)) {
@@ -169,15 +173,17 @@ class MarketData extends Component {
           />
         </View>
         <View style={styles.body}>
-          <Calculator
-            price={price}
-            fetchPrice={this.getPrice}
-            roundFactor1={roundFactor1}
-            roundFactor2={roundFactor2}
-          />
+          {!emptyPrice &&
+            <Calculator
+              price={price}
+              fetchPrice={this.getPrice}
+              roundFactor1={roundFactor1}
+              roundFactor2={roundFactor2}
+            />
+          }
         </View>
         <View style={styles.priceView}>
-          <Price price={price} />
+          {emptyPrice ? <Text>loading...</Text> : <Price price={price} />}
         </View>
         <View style={styles.bottom}>
           <BottomLinks />
