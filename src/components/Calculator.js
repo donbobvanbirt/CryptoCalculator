@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, TouchableHighlight, Text, TextInput } from 'react-native';
 // import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -25,7 +25,9 @@ export default class Calculator extends Component {
       if (!prem) { prem = 0; }
       const rate = parseFloat(last);
       const currentPrice = rate + (rate * (prem / 100));
-      const newVal2 = (Math.round((parseFloat(value1) * currentPrice) * this.props.roundFactor2) / this.props.roundFactor2).toString();
+      const newVal2 = (Math.round(
+        (parseFloat(value1) * currentPrice) * this.props.roundFactor2
+      ) / this.props.roundFactor2).toString();
       this.setState({
         value2: newVal2,
       });
@@ -73,7 +75,9 @@ export default class Calculator extends Component {
     if (!prem) { prem = 0; }
     const rate = parseFloat(last);
     const price = rate + (rate * (prem / 100));
-    let newVal2 = (Math.round((parseFloat(value1) * price) * roundFactor2) / roundFactor2).toString();
+    let newVal2 = (Math.round(
+      (parseFloat(value1) * price) * roundFactor2
+    ) / roundFactor2).toString();
     if (newVal2 === 'NaN') { newVal2 = '0'; }
     this.setState({
       premium,
@@ -87,7 +91,7 @@ export default class Calculator extends Component {
     const { last, pair } = price;
     const valueOne = value1;
     const valueTwo = value2 === null ? last : value2;
-    const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />)
+    const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />);
 
     let val1Label = '';
     let val2Label = '';
@@ -118,3 +122,10 @@ export default class Calculator extends Component {
     );
   }
 }
+
+Calculator.propTypes = {
+  price: PropTypes.object,
+  fetchPrice: PropTypes.func,
+  roundFactor1: PropTypes.number,
+  roundFactor2: PropTypes.number,
+};

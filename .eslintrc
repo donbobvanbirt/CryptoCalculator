@@ -8,5 +8,7 @@
     "no-underscore-dangle": 0,
     "prefer-default-export": 0,
     "prop-types": 0,
+    "class-methods-use-this": "off",
+    "react/forbid-prop-types": "off"
   }
 }
