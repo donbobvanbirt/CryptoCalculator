@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import GiftedSpinner from 'react-native-gifted-spinner';
@@ -26,6 +26,7 @@ class MarketData extends Component {
     this.state = {
       exchange: 'bitfinex',
       pair: 'BTC/USD',
+      loading: false,
     };
   }
 
@@ -35,7 +36,7 @@ class MarketData extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { pairs } = this.props;
+    const { pairs, price } = this.props;
     const { exchange, pair } = this.state;
     const newPairs = nextProps.pairs;
 
@@ -47,30 +48,35 @@ class MarketData extends Component {
         this.setState({ pair: newPairs[0] });
       }
     }
+    if (price !== nextProps.price) {
+      this.setState({ loading: false });
+    }
   }
 
   getPrice = () => {
     const { exchange, pair } = this.state;
+    this.setState({ loading: true });
     this.props.fetchPrice(exchange, pair);
   }
 
   selectExchange = (option) => {
     this.setState({
       exchange: option.label,
+      loading: true,
     });
     this.props.fetchPairs(option.label);
   }
 
   selectPair = (option) => {
-    this.setState({ pair: option.label });
+    this.setState({ pair: option.label, loading: true });
     this.props.fetchPrice(this.state.exchange, option.label);
   }
 
   render() {
     const { price, exchanges, pairs } = this.props;
-    const { exchange, pair } = this.state;
+    const { exchange, pair, loading } = this.state;
 
-    const emptyPrice = _.isEmpty(price);
+    const isLoading = loading || _.isEmpty(price);
 
     const asset1 = pair.split(/[^A-Za-z]/)[0];
     const asset2 = pair.split(/[^A-Za-z]/)[1];
@@ -94,7 +100,7 @@ class MarketData extends Component {
           />
         </View>
         <View style={styles.body}>
-          {!emptyPrice &&
+          {!isLoading &&
             <Calculator
               price={price}
               fetchPrice={this.getPrice}
@@ -106,7 +112,7 @@ class MarketData extends Component {
           }
         </View>
         <View style={styles.priceView}>
-          {emptyPrice ? <GiftedSpinner /> : <Price price={price} />}
+          {isLoading ? <GiftedSpinner /> : <Price price={price} />}
         </View>
         <View style={styles.bottom}>
           <BottomLinks />
