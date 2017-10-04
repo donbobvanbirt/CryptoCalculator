@@ -11,7 +11,7 @@ export function fetchPrice(exchange, pair) {
 
 export function fetchExchanges() {
   const payload = coinTicker();
-  console.log('payload:', payload);
+  // console.log('payload:', payload);
   return {
     type: 'FETCH_EXCHANGES',
     payload,

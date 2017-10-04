@@ -8,7 +8,8 @@ import Price from './Price';
 import Calculator from './Calculator';
 import BottomLinks from './BottomLinks';
 import Modal from './Modal';
-import { fetchPrice } from '../actions/MarketActions';
+
+import { fetchPrice, fetchExchanges } from '../actions/MarketActions';
 
 const availablExchanges = [
   'Bitfinex',
@@ -118,8 +119,9 @@ class MarketData extends Component {
   }
 
   componentWillMount() {
-    const { exchange, pair } = this.state;
-    this.props.fetchPrice(exchange, pair);
+    // const { exchange, pair } = this.state;
+    // this.props.fetchPrice(exchange, pair);
+    this.props.fetchExchanges();
   }
 
   getPrice = () => {
@@ -128,13 +130,15 @@ class MarketData extends Component {
   }
 
   selectExchange = (option) => {
-    const { pair } = this.state;
-    const currentPair = availablePairs[option.label].includes(pair) ? pair : 'BTC/USD';
+    console.log('option:', option);
+    // const { pair } = this.state;
+    // const currentPair = availablePairs[option.label].includes(pair) ? pair : 'BTC/USD';
+    // const currentPair = pair;
     this.setState({
       exchange: option.label,
-      pair: currentPair,
+      // pair: currentPair,
     });
-    this.props.fetchPrice(option.label, currentPair);
+    // this.props.fetchPrice(option.label, currentPair);
   }
 
   selectPair = (option) => {
@@ -143,11 +147,11 @@ class MarketData extends Component {
   }
 
   render() {
-    const { price } = this.props;
+    const { price, exchanges } = this.props;
     const { exchange, pair } = this.state;
 
     const emptyPrice = _.isEmpty(price);
-    console.log('emptyPrice:', emptyPrice);
+    console.log('exchanges:', exchanges);
     let roundFactor1 = 100000000;
     let roundFactor2 = 1000;
     if (cryptoPairs.includes(pair)) {
@@ -161,7 +165,7 @@ class MarketData extends Component {
         <View style={styles.top}>
           <Modal
             textInputValue={exchange}
-            data={availablExchanges}
+            data={exchanges || []}
             select={this.selectExchange}
             menueTitle="Select Exchange:"
           />
@@ -195,14 +199,19 @@ class MarketData extends Component {
 
 MarketData.propTypes = {
   price: PropTypes.object,
+  exchanges: PropTypes.array,
   fetchPrice: PropTypes.func,
+  fetchExchanges: PropTypes.func,
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchPrice(exchange, pair) {
     dispatch(fetchPrice(exchange, pair));
   },
+  fetchExchanges(exchange, pair) {
+    dispatch(fetchExchanges(exchange, pair));
+  },
 });
-const mapStateToProps = state => ({ price: state.price });
+const mapStateToProps = state => ({ price: state.price, exchanges: state.exchanges });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarketData);
