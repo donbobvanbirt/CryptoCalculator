@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import GiftedSpinner from 'react-native-gifted-spinner';
 
 import styles from '../styles';
 import Price from './Price';
@@ -105,7 +106,7 @@ class MarketData extends Component {
           }
         </View>
         <View style={styles.priceView}>
-          {emptyPrice ? <Text>loading...</Text> : <Price price={price} />}
+          {emptyPrice ? <GiftedSpinner /> : <Price price={price} />}
         </View>
         <View style={styles.bottom}>
           <BottomLinks />
