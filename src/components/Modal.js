@@ -1,31 +1,30 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { View, Text } from 'react-native';
 import ModalPicker from 'react-native-modal-picker';
 
 import styles from '../styles';
 
-export default class Modal extends Component {
-  render() {
-    const { textInputValue, select, data, menueTitle } = this.props;
-    console.log('data:', data);
-    const listData = data ? data.map((item, index) => (
-      { key: index + 2, label: item }
-    )) : [];
-    listData.unshift({ key: 1, section: true, label: menueTitle });
-    return (
-      <View style={styles.modal}>
+const Modal = (props) => {
+  const { textInputValue, select, data, menueTitle } = props;
 
-        <ModalPicker
-          data={listData}
-          initValue="Select exchange"
-          onChange={option => select(option)}
-        >
-          <Text style={styles.modalText}>{textInputValue}</Text>
-        </ModalPicker>
-      </View>
-    );
-  }
-}
+  const listData = data ? data.map((item, index) => (
+    { key: index + 2, label: item }
+  )) : [];
+  listData.unshift({ key: 1, section: true, label: menueTitle });
+
+  return (
+    <View style={styles.modal}>
+
+      <ModalPicker
+        data={listData}
+        initValue="Select exchange"
+        onChange={option => select(option)}
+      >
+        <Text style={styles.modalText}>{textInputValue}</Text>
+      </ModalPicker>
+    </View>
+  );
+};
 
 Modal.propTypes = {
   textInputValue: PropTypes.string,
@@ -33,3 +32,5 @@ Modal.propTypes = {
   data: PropTypes.array,
   menueTitle: PropTypes.string,
 };
+
+export default Modal;
