@@ -109,4 +109,7 @@ export default StyleSheet.create({
     fontSize: 17,
     margin: 8,
   },
+  spinnerContainer: {
+    marginTop: 100,
+  },
 });

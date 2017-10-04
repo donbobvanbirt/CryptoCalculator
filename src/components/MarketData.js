@@ -100,7 +100,10 @@ class MarketData extends Component {
           />
         </View>
         <View style={styles.body}>
-          {!isLoading &&
+          {isLoading ?
+            <View style={styles.spinnerContainer}>
+              <GiftedSpinner />
+            </View> :
             <Calculator
               price={price}
               fetchPrice={this.getPrice}
@@ -112,7 +115,7 @@ class MarketData extends Component {
           }
         </View>
         <View style={styles.priceView}>
-          {isLoading ? <GiftedSpinner /> : <Price price={price} />}
+          {!isLoading && <Price price={price} />}
         </View>
         <View style={styles.bottom}>
           <BottomLinks />
