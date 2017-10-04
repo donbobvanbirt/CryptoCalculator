@@ -71,8 +71,10 @@ class MarketData extends Component {
 
     const emptyPrice = _.isEmpty(price);
 
-    const roundFactor1 = fiat.includes(pair.split('_')[0]) ? 1000 : 100000000;
-    const roundFactor2 = fiat.includes(pair.split('_')[1]) ? 1000 : 100000000;
+    const asset1 = pair.split(/[^A-Za-z]/)[0];
+    const asset2 = pair.split(/[^A-Za-z]/)[1];
+    const roundFactor1 = fiat.includes(asset1) ? 1000 : 100000000;
+    const roundFactor2 = fiat.includes(asset2) ? 1000 : 100000000;
 
     return (
       <View style={styles.container}>
@@ -95,6 +97,8 @@ class MarketData extends Component {
             <Calculator
               price={price}
               fetchPrice={this.getPrice}
+              val1Label={asset1}
+              val2Label={asset2}
               roundFactor1={roundFactor1}
               roundFactor2={roundFactor2}
             />

@@ -86,18 +86,11 @@ export default class Calculator extends Component {
 
   render() {
     const { value1, value2, premium } = this.state;
-    const { price, fetchPrice } = this.props;
-    const { last, pair } = price;
-    const valueOne = value1;
-    const valueTwo = value2 === null ? last : value2;
-    const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />);
+    const { price, fetchPrice, val1Label, val2Label } = this.props;
 
-    let val1Label = '';
-    let val2Label = '';
-    if (pair) {
-      val1Label = pair.split('_')[0];
-      val2Label = pair.split('_')[1];
-    }
+    const valueOne = value1;
+    const valueTwo = value2 === null ? price.last : value2;
+    const refreshIcon = (<Icon name="refresh" style={styles.refreshText} size={20} />);
 
     return (
       <View style={styles.container}>
@@ -125,6 +118,8 @@ export default class Calculator extends Component {
 Calculator.propTypes = {
   price: PropTypes.object,
   fetchPrice: PropTypes.func,
+  val1Label: PropTypes.string,
+  val2Label: PropTypes.string,
   roundFactor1: PropTypes.number,
   roundFactor2: PropTypes.number,
 };
