@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, TouchableHighlight, Text, TextInput } from 'react-native';
 // import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import GiftedSpinner from 'react-native-gifted-spinner';
 
 import styles from '../styles';
 
@@ -86,7 +87,15 @@ export default class Calculator extends Component {
 
   render() {
     const { value1, value2, premium } = this.state;
-    const { price, fetchPrice, val1Label, val2Label } = this.props;
+    const { price, fetchPrice, val1Label, val2Label, isLoading } = this.props;
+
+    if (isLoading) {
+      return (
+        <View style={styles.spinnerContainer}>
+          <GiftedSpinner />
+        </View>
+      );
+    }
 
     const valueOne = value1;
     const valueTwo = value2 === null ? price.last : value2;
@@ -122,4 +131,5 @@ Calculator.propTypes = {
   val2Label: PropTypes.string,
   roundFactor1: PropTypes.number,
   roundFactor2: PropTypes.number,
+  isLoading: PropTypes.bool,
 };

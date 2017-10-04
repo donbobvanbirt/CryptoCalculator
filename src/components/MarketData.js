@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import GiftedSpinner from 'react-native-gifted-spinner';
 
 import styles from '../styles';
 import Price from './Price';
@@ -100,19 +99,15 @@ class MarketData extends Component {
           />
         </View>
         <View style={styles.body}>
-          {isLoading ?
-            <View style={styles.spinnerContainer}>
-              <GiftedSpinner />
-            </View> :
-            <Calculator
-              price={price}
-              fetchPrice={this.getPrice}
-              val1Label={asset1}
-              val2Label={asset2}
-              roundFactor1={roundFactor1}
-              roundFactor2={roundFactor2}
-            />
-          }
+          <Calculator
+            price={price}
+            fetchPrice={this.getPrice}
+            val1Label={asset1}
+            val2Label={asset2}
+            roundFactor1={roundFactor1}
+            roundFactor2={roundFactor2}
+            isLoading={isLoading}
+          />
         </View>
         <View style={styles.priceView}>
           {!isLoading && <Price price={price} />}
