@@ -5,7 +5,6 @@ import styles from '../styles';
 
 export default class BottomLinks extends Component {
   handleClick() {
-    // console.log('click');
     Linking.canOpenURL('https://www.coinbase.com/join/donovan')
       .then((supported) => {
         if (supported) {

@@ -6,7 +6,7 @@ import styles from '../styles';
 
 const Price = ({ price }) => {
   const { bid, ask, last, low, high, vol, timestamp, exchange } = price;
-  console.log('price:', price);
+
   const time = timestamp ? moment(timestamp * 1000).format('L h:mm a') : '';
   return (
     <View>

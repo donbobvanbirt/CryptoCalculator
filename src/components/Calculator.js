@@ -39,7 +39,6 @@ export default class Calculator extends Component {
     const { roundFactor2 } = this.props;
     const { premium } = this.state;
     let prem = parseFloat(premium);
-    // console.log('prem:', prem);
     if (!prem) { prem = 0; }
     const rate = parseFloat(last);
     const price = rate + (rate * (prem / 100));
