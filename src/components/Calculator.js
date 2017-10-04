@@ -96,8 +96,6 @@ export default class Calculator extends Component {
     let val1Label = '';
     let val2Label = '';
     if (pair) {
-      // val1Label = pair.slice(0, 3).toUpperCase();
-      // val2Label = pair.slice(3).toUpperCase();
       val1Label = pair.split('_')[0];
       val2Label = pair.split('_')[1];
     }
