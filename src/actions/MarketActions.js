@@ -17,3 +17,12 @@ export function fetchExchanges() {
     payload,
   };
 }
+
+export function fetchPairs(exchange) {
+  const payload = coinTicker(exchange, 'pairs');
+  // console.log('payload:', payload);
+  return {
+    type: 'FETCH_PAIRS',
+    payload,
+  };
+}

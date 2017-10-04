@@ -9,15 +9,15 @@ import Calculator from './Calculator';
 import BottomLinks from './BottomLinks';
 import Modal from './Modal';
 
-import { fetchPrice, fetchExchanges } from '../actions/MarketActions';
+import { fetchPrice, fetchExchanges, fetchPairs } from '../actions/MarketActions';
 
-const availablExchanges = [
-  'Bitfinex',
-  'Bitstamp',
-  'Kraken',
-  'BTC-e',
-  'Okcoin',
-];
+// const availablExchanges = [
+//   'Bitfinex',
+//   'Bitstamp',
+//   'Kraken',
+//   'BTC-e',
+//   'Okcoin',
+// ];
 
 const availablePairs = {
   Bitfinex: [
@@ -124,6 +124,10 @@ class MarketData extends Component {
     this.props.fetchExchanges();
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   const { }
+  // }
+
   getPrice = () => {
     const { exchange, pair } = this.state;
     this.props.fetchPrice(exchange, pair);
@@ -138,7 +142,7 @@ class MarketData extends Component {
       exchange: option.label,
       // pair: currentPair,
     });
-    // this.props.fetchPrice(option.label, currentPair);
+    this.props.fetchPairs(option.label);
   }
 
   selectPair = (option) => {
@@ -147,11 +151,11 @@ class MarketData extends Component {
   }
 
   render() {
-    const { price, exchanges } = this.props;
+    const { price, exchanges, pairs } = this.props;
     const { exchange, pair } = this.state;
 
     const emptyPrice = _.isEmpty(price);
-    console.log('exchanges:', exchanges);
+    console.log('pairs:', pairs);
     let roundFactor1 = 100000000;
     let roundFactor2 = 1000;
     if (cryptoPairs.includes(pair)) {
@@ -171,7 +175,7 @@ class MarketData extends Component {
           />
           <Modal
             textInputValue={pair}
-            data={availablePairs[exchange]}
+            data={pairs}
             select={this.selectPair}
             menueTitle={`Available asset pairs for ${exchange}:`}
           />
@@ -200,18 +204,27 @@ class MarketData extends Component {
 MarketData.propTypes = {
   price: PropTypes.object,
   exchanges: PropTypes.array,
+  pairs: PropTypes.array,
   fetchPrice: PropTypes.func,
   fetchExchanges: PropTypes.func,
+  fetchPairs: PropTypes.func,
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchPrice(exchange, pair) {
     dispatch(fetchPrice(exchange, pair));
   },
-  fetchExchanges(exchange, pair) {
-    dispatch(fetchExchanges(exchange, pair));
+  fetchExchanges() {
+    dispatch(fetchExchanges());
+  },
+  fetchPairs(exchange) {
+    dispatch(fetchPairs(exchange));
   },
 });
-const mapStateToProps = state => ({ price: state.price, exchanges: state.exchanges });
+const mapStateToProps = state => ({
+  price: state.price,
+  exchanges: state.exchanges,
+  pairs: state.pairs,
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarketData);
