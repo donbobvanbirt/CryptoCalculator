@@ -24,7 +24,7 @@ class MarketData extends Component {
     super();
     this.state = {
       exchange: 'bitfinex',
-      pair: 'BTC_USD',
+      pair: 'BTC/USD',
     };
   }
 
@@ -79,13 +79,13 @@ class MarketData extends Component {
         <View style={styles.top}>
           <Modal
             textInputValue={exchange}
-            data={exchanges || []}
+            data={exchanges}
             select={this.selectExchange}
             menueTitle="Select Exchange:"
           />
           <Modal
-            textInputValue={pair}
-            data={pairs}
+            textInputValue={pair.split('_').join('/')}
+            data={pairs.map(p => p.split('_').join('/'))}
             select={this.selectPair}
             menueTitle={`Available asset pairs for ${exchange}:`}
           />
@@ -112,12 +112,12 @@ class MarketData extends Component {
 }
 
 MarketData.propTypes = {
-  price: PropTypes.object,
-  exchanges: PropTypes.array,
-  pairs: PropTypes.array,
-  fetchPrice: PropTypes.func,
-  fetchExchanges: PropTypes.func,
-  fetchPairs: PropTypes.func,
+  price: PropTypes.object.isRequired,
+  exchanges: PropTypes.array.isRequired,
+  pairs: PropTypes.array.isRequired,
+  fetchPrice: PropTypes.func.isRequired,
+  fetchExchanges: PropTypes.func.isRequired,
+  fetchPairs: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
