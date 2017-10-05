@@ -40,7 +40,7 @@ class MarketData extends Component {
     const newPairs = nextProps.pairs;
 
     if (pairs !== newPairs) {
-      if (newPairs.includes(pair)) {
+      if (newPairs.includes(pair.replace(/\//i, '_'))) {
         this.props.fetchPrice(exchange, pair);
       } else {
         this.props.fetchPrice(exchange, newPairs[0]);
