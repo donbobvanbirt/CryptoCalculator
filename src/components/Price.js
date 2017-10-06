@@ -1,45 +1,50 @@
-import React, { Component } from 'react';
-import { View, Text, Button, TouchableHighlight } from 'react-native';
+import React, { PropTypes } from 'react';
+import { View, Text } from 'react-native';
 import moment from 'moment';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../styles';
 
-export default class Price extends Component {
+const Price = ({ price }) => {
+  const { bid, ask, last, low, high, vol, timestamp, exchange } = price;
 
-  render() {
-    const { bid, ask, last, low, high, vol, timestamp } = this.props.price;
-    const time = timestamp ? moment(timestamp * 1000).format('L h:mm a') : '';
-    return (
-      <View>
-        <Text style={styles.price}>
-          Last Price: {last}
-        </Text>
-        <View style={styles.detailContainer}>
-          <Text style={styles.priceDetails}>
-            Low: {low}
-          </Text>
-          <Text style={styles.priceDetails}>
-            High: {high}
-          </Text>
-        </View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.priceDetails}>
-            Bid: {bid}
-          </Text>
-          <Text style={styles.priceDetails}>
-            Ask: {ask}
-          </Text>
-        </View>
+  const time = timestamp ? moment(timestamp * 1000).format('L h:mm a') : '';
+  return (
+    <View>
+      <Text style={styles.price}>
+        Last Price: {last}
+      </Text>
+      <View style={styles.detailContainer}>
         <Text style={styles.priceDetails}>
-          Volume: {vol}
+          Low: {low}
         </Text>
         <Text style={styles.priceDetails}>
-          {time}
+          High: {high}
         </Text>
-        <View style={styles.chartView}>
-        </View>
       </View>
-    );
-  }
-}
+      <View style={styles.detailContainer}>
+        <Text style={styles.priceDetails}>
+          Bid: {bid}
+        </Text>
+        <Text style={styles.priceDetails}>
+          Ask: {ask}
+        </Text>
+      </View>
+      <Text style={styles.priceDetails}>
+        Volume: {vol}
+      </Text>
+      <Text style={styles.priceDetails}>
+        {time}
+      </Text>
+      <Text style={styles.priceDetails}>
+        {exchange}
+      </Text>
+      <View style={styles.chartView} />
+    </View>
+  );
+};
+
+Price.propTypes = {
+  price: PropTypes.object.isRequired,
+};
+
+export default Price;

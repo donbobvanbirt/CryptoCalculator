@@ -1,6 +1,6 @@
-export default function price(state = {}, action) {
+export default function exchanges(state = [], action) {
   switch (action.type) {
-    case 'FETCH_PRICE_FULFILLED':
+    case 'FETCH_EXCHANGES':
       return action.payload;
     default:
       return state;
